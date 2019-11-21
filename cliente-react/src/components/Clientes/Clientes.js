@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
+import { Link } from 'react-router-dom';
+
 import { CLIENTES_QUERY } from '../../queries/clientes';
 
 const Clientes = () => (
@@ -11,7 +13,7 @@ const Clientes = () => (
 			console.log(data.getClientes);
 			return (
                 <Fragment>
-                    <h2 className="text-center mt-4">Listado de Clientes</h2>
+                    <h2 className="text-center">Listado de Clientes</h2>
                     <ul className="list-group mt-4">
                         {data.getClientes.map((client) => (
                             <li key={client.id} className="list-group-item">
@@ -20,9 +22,9 @@ const Clientes = () => (
                                         {client.nombre} {client.apellido} - {client.empresa}
                                     </div>
                                     <div className="col-md-4 d-flex justify-content-end">
-                                        <a className="btn btn-success d-block d-md-inline-block">
+                                        <Link to={`cliente/editar/${client.id}`} className="btn btn-success d-block d-md-inline-block">
                                             Editar cliente
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </li>
